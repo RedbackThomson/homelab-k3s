@@ -1,0 +1,554 @@
+{
+  "lockfile-version": 1,
+  "manifest": {
+    "version": 1,
+    "install": {
+      "fluxcd": {
+        "pkg-path": "fluxcd"
+      },
+      "helm": {
+        "pkg-path": "helm",
+        "systems": [
+          "aarch64-linux",
+          "x86_64-linux"
+        ]
+      },
+      "helm-diff": {
+        "pkg-path": "kubernetes-helmPlugins.helm-diff"
+      },
+      "helm-secrets": {
+        "pkg-path": "kubernetes-helmPlugins.helm-secrets"
+      },
+      "helmfile": {
+        "pkg-path": "helmfile"
+      }
+    },
+    "hook": {},
+    "profile": {},
+    "options": {}
+  },
+  "packages": [
+    {
+      "attr_path": "fluxcd",
+      "broken": false,
+      "derivation": "/nix/store/s1wlzlk1a599dbysj96b8c2k3r9yhdgc-fluxcd-2.7.5.drv",
+      "description": "Open and extensible continuous delivery solution for Kubernetes",
+      "install_id": "fluxcd",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "fluxcd-2.7.5",
+      "pname": "fluxcd",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T02:55:23.115712Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.7.5",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/fpbq0wq1anzw05syjp8g89kvki6a7w7f-fluxcd-2.7.5"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "fluxcd",
+      "broken": false,
+      "derivation": "/nix/store/mw395hac8wiiz6pa2hqkkcdv3qmm6b6i-fluxcd-2.7.5.drv",
+      "description": "Open and extensible continuous delivery solution for Kubernetes",
+      "install_id": "fluxcd",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "fluxcd-2.7.5",
+      "pname": "fluxcd",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:04:24.310139Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.7.5",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/b5chqp1b7v3dalrf2y9mp022xjl4mya6-fluxcd-2.7.5"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "fluxcd",
+      "broken": false,
+      "derivation": "/nix/store/xyjpvv29qc16kapwdy3gwzdn0vgij408-fluxcd-2.7.5.drv",
+      "description": "Open and extensible continuous delivery solution for Kubernetes",
+      "install_id": "fluxcd",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "fluxcd-2.7.5",
+      "pname": "fluxcd",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:14:22.343010Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.7.5",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/78kbb0rlxbfsp1glzp7c78qczcy1wgcm-fluxcd-2.7.5"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "fluxcd",
+      "broken": false,
+      "derivation": "/nix/store/lcg84k01m6kh6f4d1wqlpn65fkanwhld-fluxcd-2.7.5.drv",
+      "description": "Open and extensible continuous delivery solution for Kubernetes",
+      "install_id": "fluxcd",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "fluxcd-2.7.5",
+      "pname": "fluxcd",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:23:15.011700Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2.7.5",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/ymnq3v3pgca5cwhcdk2r990i9n2j6hhq-fluxcd-2.7.5"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "helm",
+      "broken": false,
+      "derivation": "/nix/store/smh06qb12lgckrb8j8c7zmbg6j4fdwgw-helm-0.9.0.drv",
+      "description": "Free, cross-platform, polyphonic synthesizer",
+      "install_id": "helm",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-0.9.0",
+      "pname": "helm",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:04:41.030740Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.9.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/343mz9hfvn1hpd64aqf7japrb7j9s0xy-helm-0.9.0"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "helm",
+      "broken": false,
+      "derivation": "/nix/store/skmprjywazh70df9nxdvwkgw85xjy9xi-helm-0.9.0.drv",
+      "description": "Free, cross-platform, polyphonic synthesizer",
+      "install_id": "helm",
+      "license": "GPL-3.0-or-later",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-0.9.0",
+      "pname": "helm",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:23:32.031026Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "0.9.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/fh73k4pkd0sk3gan81rjspvmh9ljab75-helm-0.9.0"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-diff",
+      "broken": false,
+      "derivation": "/nix/store/6bvykxq97ckm1h8qch9rfdsc6balqi9b-helm-diff-3.13.1.drv",
+      "description": "Helm plugin that shows a diff",
+      "install_id": "helm-diff",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-diff-3.13.1",
+      "pname": "helm-diff",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T02:55:38.237357Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.13.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/pjkn131vnj7scd9zghh98wqjvr8vk9wj-helm-diff-3.13.1"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-diff",
+      "broken": false,
+      "derivation": "/nix/store/hbny10qy1rkx3sff1a9h5jjhpvndb4zi-helm-diff-3.13.1.drv",
+      "description": "Helm plugin that shows a diff",
+      "install_id": "helm-diff",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-diff-3.13.1",
+      "pname": "helm-diff",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:04:46.228587Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.13.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/3s6xz6q9c4d2xy5m5z37wgl2vfmj7yzn-helm-diff-3.13.1"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-diff",
+      "broken": false,
+      "derivation": "/nix/store/28bd7jmb50gwimh1na5b16yaf3wmi1bj-helm-diff-3.13.1.drv",
+      "description": "Helm plugin that shows a diff",
+      "install_id": "helm-diff",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-diff-3.13.1",
+      "pname": "helm-diff",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:14:37.318970Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.13.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/6b9xpzqnf0b91zzdbzjhy8ccbwghrd2d-helm-diff-3.13.1"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-diff",
+      "broken": false,
+      "derivation": "/nix/store/3vjxiknpsi8x56d6shpfh6x0lk5hzh03-helm-diff-3.13.1.drv",
+      "description": "Helm plugin that shows a diff",
+      "install_id": "helm-diff",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-diff-3.13.1",
+      "pname": "helm-diff",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:23:37.455078Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "3.13.1",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/qhq50ass6v2cj3pvhm6i1q9ij23sxmlv-helm-diff-3.13.1"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-secrets",
+      "broken": false,
+      "derivation": "/nix/store/brz0z8ph2hrfy5hz9i01vjpa1d22h17g-helm-secrets-4.6.10.drv",
+      "description": "Helm plugin that helps manage secrets",
+      "install_id": "helm-secrets",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-secrets-4.6.10",
+      "pname": "helm-secrets",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T02:55:38.244412Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "4.6.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/zbvxqwc68idwwsi9zlvmxbk4al2ac4iz-helm-secrets-4.6.10"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-secrets",
+      "broken": false,
+      "derivation": "/nix/store/vw7sifq8g68kahcfvsv74ya4yayg2157-helm-secrets-4.6.10.drv",
+      "description": "Helm plugin that helps manage secrets",
+      "install_id": "helm-secrets",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-secrets-4.6.10",
+      "pname": "helm-secrets",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:04:46.236863Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "4.6.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/1k64521mrj2qpgmzmhv2lv4s97c012fh-helm-secrets-4.6.10"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-secrets",
+      "broken": false,
+      "derivation": "/nix/store/646kbl3f12f0y4h9xvn8svsl16yjsbzs-helm-secrets-4.6.10.drv",
+      "description": "Helm plugin that helps manage secrets",
+      "install_id": "helm-secrets",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-secrets-4.6.10",
+      "pname": "helm-secrets",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:14:37.325675Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "4.6.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/xr8s7g3ij2ikicgk57n699v75zdysz2i-helm-secrets-4.6.10"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "kubernetes-helmPlugins.helm-secrets",
+      "broken": false,
+      "derivation": "/nix/store/g7pwxirgpcf7rxlwk7g53ha1yz5zx0bz-helm-secrets-4.6.10.drv",
+      "description": "Helm plugin that helps manage secrets",
+      "install_id": "helm-secrets",
+      "license": "Apache-2.0",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helm-secrets-4.6.10",
+      "pname": "helm-secrets",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:23:37.463465Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "4.6.10",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/idqbm5b92gs72mli98k17j1xhq436fgp-helm-secrets-4.6.10"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "helmfile",
+      "broken": false,
+      "derivation": "/nix/store/jxj6ls69m1b9fsdl2xkx44lb6pqa4b9r-helmfile-1.1.9.drv",
+      "description": "Declarative spec for deploying Helm charts",
+      "install_id": "helmfile",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helmfile-1.1.9",
+      "pname": "helmfile",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T02:55:36.288123Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.1.9",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/fxv20xqxy0qyb06pcgk5d0m59j4v8vmh-helmfile-1.1.9"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "helmfile",
+      "broken": false,
+      "derivation": "/nix/store/spzga2817k2zd8y46ni0bfl9jb4xc9b5-helmfile-1.1.9.drv",
+      "description": "Declarative spec for deploying Helm charts",
+      "install_id": "helmfile",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helmfile-1.1.9",
+      "pname": "helmfile",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:04:41.035478Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.1.9",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/bm87ycprilhnfml8y5g3jpqrps612rvm-helmfile-1.1.9"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "helmfile",
+      "broken": false,
+      "derivation": "/nix/store/9ylxk8ywjgqg1p62ksb7h4sgba2plbr8-helmfile-1.1.9.drv",
+      "description": "Declarative spec for deploying Helm charts",
+      "install_id": "helmfile",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helmfile-1.1.9",
+      "pname": "helmfile",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:14:35.451394Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.1.9",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/g68v1fcjxslcrcsf3963xsrybyasd5x7-helmfile-1.1.9"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "helmfile",
+      "broken": false,
+      "derivation": "/nix/store/27m5iqk79lfb8hwri3200jq5manxbmvk-helmfile-1.1.9.drv",
+      "description": "Declarative spec for deploying Helm charts",
+      "install_id": "helmfile",
+      "license": "MIT",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "name": "helmfile-1.1.9",
+      "pname": "helmfile",
+      "rev": "a6531044f6d0bef691ea18d4d4ce44d0daa6e816",
+      "rev_count": 914755,
+      "rev_date": "2025-12-21T09:35:49Z",
+      "scrape_date": "2025-12-23T03:23:32.035801Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.1.9",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/pfrs5s57zpd3r8f6bzz14c4p6f0gjj7m-helmfile-1.1.9"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    }
+  ]
+}
