@@ -1,0 +1,19 @@
+---
+DNS1:
+  8.8.8.8
+DNS2:
+  1.1.1.1
+persistentVolumeClaim:
+  enabled: true
+ingress:
+  enabled: true
+  hosts:
+    - "pihole.homelab.redback.dev"
+serviceWeb:
+  type: ClusterIP
+serviceDns:
+  loadBalancerIP: 192.168.1.221
+  annotations:
+    metallb.universe.tf/allow-shared-ip: pihole-svc
+  type: LoadBalancer
+replicaCount: 1

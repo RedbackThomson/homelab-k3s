@@ -1,0 +1,22 @@
+repositories:
+  - name: mojo2600
+    url: https://mojo2600.github.io/pihole-kubernetes/
+  - name: external-dns
+    url: https://kubernetes-sigs.github.io/external-dns/
+---
+releases:
+  # pihole
+  - name: pihole
+    namespace: pihole-system
+    chart: mojo2600/pihole
+    version: 2.18.0
+    values:
+      - ./pihole.values.yaml
+
+  # Automatic DNS for pihole
+  - name: externaldns-pihole
+    namespace: pihole-system
+    chart: external-dns/external-dns
+    version: 1.19.0
+    values:
+      - ./externaldns.values.yaml

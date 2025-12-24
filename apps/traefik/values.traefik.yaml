@@ -1,0 +1,64 @@
+providers:
+  kubernetesIngress:
+    publishedService:
+      enabled: true
+  kubernetesGateway:
+    enabled: true
+
+gateway:
+  namespacePolicy: All
+
+api:
+  dashboard: true
+  insecure: false
+
+ingressRoute:
+  dashboard:
+    enabled: true
+    matchRule: Host(`dashboard.homelab.redback.dev`)
+    entryPoints:
+    - websecure
+
+ingressClass:
+  isDefaultClass: true
+
+ports:
+  web:
+    port: 80
+    redirections:
+      entryPoint:
+        to: websecure
+        scheme: https
+        permanent: true
+
+  websecure:
+    port: 443
+
+gateway:
+  listeners:
+    web:
+      port: 80
+      protocol: HTTP
+      hostname: "traefik.homelab.redback.dev"
+      namespacePolicy:
+        from: All
+
+    websecure:
+      port: 443
+      protocol: HTTPS
+      hostname: "traefik.homelab.redback.dev"
+      namespacePolicy:
+        from: All
+      mode: Terminate
+      certificateRefs:
+        - name: traefik-cert
+          kind: Secret
+          group: ""
+
+certificatesResolvers:
+  le:
+    acme:
+      email: nick@redback.dev
+      storage: "/data/acme.json"
+      httpChallenge:
+        entryPoint: web
