@@ -1,64 +1,48 @@
+# Use Ingress/IngressRoute (not Gateway API)
 providers:
   kubernetesIngress:
+    enabled: true
     publishedService:
       enabled: true
-  kubernetesGateway:
+  kubernetesCRD:
     enabled: true
+  kubernetesGateway:
+    enabled: false
 
+# Turn off the Gateway API chart-managed Gateway/listeners
 gateway:
-  namespacePolicy: All
+  enabled: false
 
 api:
   dashboard: true
   insecure: false
 
+# Expose dashboard via Traefik IngressRoute + ACME
 ingressRoute:
   dashboard:
     enabled: true
-    matchRule: Host(`dashboard.homelab.redback.dev`)
+    matchRule: Host(`traefik-dashboard.homelab.redback.dev`)
+    annotations:
+      external-dns.alpha.kubernetes.io/target: traefik.homelab.redback.dev
     entryPoints:
-    - websecure
+      - websecure
+    tls:
+      certResolver: le
 
 ingressClass:
+  enabled: true
   isDefaultClass: true
 
 ports:
   web:
     port: 80
-    redirections:
-      entryPoint:
-        to: websecure
-        scheme: https
-        permanent: true
-
   websecure:
     port: 443
 
-gateway:
-  listeners:
-    web:
-      port: 80
-      protocol: HTTP
-      hostname: "traefik.homelab.redback.dev"
-      namespacePolicy:
-        from: All
 
-    websecure:
-      port: 443
-      protocol: HTTPS
-      hostname: "traefik.homelab.redback.dev"
-      namespacePolicy:
-        from: All
-      mode: Terminate
-      certificateRefs:
-        - name: traefik-cert
-          kind: Secret
-          group: ""
-
-certificatesResolvers:
-  le:
-    acme:
-      email: nick@redback.dev
-      storage: "/data/acme.json"
-      httpChallenge:
-        entryPoint: web
+# tlsChallenge is not working with the current version of the chart, so 
+# we're using additionalArguments to set the tlschallenge flag.
+additionalArguments:
+  - --certificatesresolvers.le.acme.email=nick@redback.dev
+  - --certificatesresolvers.le.acme.storage=/data/acme.json
+  - --certificatesresolvers.le.acme.tlschallenge=true

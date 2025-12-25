@@ -16,6 +16,7 @@ sources:
   # - gateway-udproute
   # - gateway-tcproute
   # - gateway-grpcroute
+  - traefik-proxy
   - service
   - ingress
 serviceAccount:
