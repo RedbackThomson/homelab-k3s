@@ -1,0 +1,11 @@
+repositories:
+  - name: oauth2-proxy
+    url: https://oauth2-proxy.github.io/manifests
+
+releases:
+  - name: oauth2-proxy
+    namespace: traefik-system
+    chart: oauth2-proxy/oauth2-proxy
+    version: 10.0.0
+    values:
+      - oauth2-proxy.values.yaml

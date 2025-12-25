@@ -1,0 +1,34 @@
+config:
+  existingSecret: oauth2-proxy-secrets
+
+extraArgs:
+  provider: github
+  http-address: 0.0.0.0:4180
+  email-domain: "*"
+
+  redirect-url: https://oauth.homelab.redback.dev/oauth2/callback
+
+  # Upstream configuration for traefik dashboard
+  upstream: static://200
+
+  # Allow redirecting back to multiple upstream hosts
+  whitelist-domain: .homelab.redback.dev
+
+  # cookie + security
+  cookie-secure: "true"
+  cookie-samesite: lax
+  cookie-domain: .homelab.redback.dev
+  cookie-refresh: "1h"
+  cookie-expire: 24h
+
+  # forward auth mode
+  reverse-proxy: "true"
+  set-xauthrequest: "true"
+  pass-access-token: "true"
+  pass-user-headers: "true"
+
+  # Enable authentication redirect
+  skip-provider-button: "true"
+
+  # restrict to specific user
+  github-user: RedbackThomson

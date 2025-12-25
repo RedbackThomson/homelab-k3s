@@ -26,6 +26,9 @@ ingressRoute:
       external-dns.alpha.kubernetes.io/target: traefik.homelab.redback.dev
     entryPoints:
       - websecure
+    middlewares:
+      - name: oauth2-errors
+      - name: oauth2-auth
     tls:
       certResolver: le
 
