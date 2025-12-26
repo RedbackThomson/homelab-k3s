@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: isponsorblocktv
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: isponsorblocktv
+  namespace: isponsorblocktv
+spec:
+  serviceName: isponsorblocktv
+  replicas: 1
+  selector:
+    matchLabels:
+      app: isponsorblocktv
+  template:
+    metadata:
+      labels:
+        app: isponsorblocktv
+    spec:
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: isponsorblocktv
+          image: ghcr.io/dmunozv04/isponsorblocktv:v2
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 100Mi
