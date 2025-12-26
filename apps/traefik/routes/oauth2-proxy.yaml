@@ -43,6 +43,6 @@ spec:
   tls:
     certResolver: le
     domains:
-    - main: "homelab.redback.dev"
+    - main: "*.homelab.redback.dev"
       sans:
         - "*.homelab.redback.dev"

@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/target: traefik.homelab.redback.dev
+  name: hass
+  namespace: traefik-system
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`hass.homelab.redback.dev`)
+    services:
+    - name: hass-external
+      namespace: traefik-system
+      port: 8123
+  tls:
+    certResolver: le
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hass-external
+  namespace: traefik-system
+spec:
+  type: ExternalName
+  externalName: 192.168.1.152 # hass.homelab.local
+  ports:
+    - name: web
+      port: 8123
+      targetPort: 8123

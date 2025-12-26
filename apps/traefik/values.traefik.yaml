@@ -6,6 +6,7 @@ providers:
       enabled: true
   kubernetesCRD:
     enabled: true
+    allowExternalNameServices: true
   kubernetesGateway:
     enabled: false
 
