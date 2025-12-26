@@ -6,9 +6,7 @@ DNS2:
 persistentVolumeClaim:
   enabled: true
 ingress:
-  enabled: true
-  hosts:
-    - "pihole.homelab.redback.dev"
+  enabled: false
 serviceWeb:
   type: ClusterIP
 serviceDns:
