@@ -1,0 +1,11 @@
+repositories:
+  - name: couchdb
+    url: https://apache.github.io/couchdb-helm
+
+releases:
+  - name: couchdb
+    namespace: obsidian
+    chart: couchdb/couchdb
+    version: 4.6.3
+    values:
+      - values.couchdb.yaml

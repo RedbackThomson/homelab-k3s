@@ -1,0 +1,35 @@
+# This will be overridden after the initial deployment.
+createAdminSecret: true
+
+# Automatically finish cluster setup and create system databases
+autoSetup:
+  enabled: true
+  defaultDatabases:
+    - _users
+    - _replicator
+    - _global_changes
+
+# Number of replicas/nodes in the cluster.
+clusterSize: 2
+
+couchdbConfig:
+  couchdb:
+    uuid: 8ce1e4d81fd042b193f319538319dcec
+    max_document_size: 50000000
+  chttpd:
+    require_valid_user: true
+    enable_cors: true
+    max_http_request_size: 4294967296
+    bind_address: any
+  chttpd_auth:
+    require_valid_user: true
+  httpd:
+    WWW-Authenticate: Basic realm="couchdb"
+    enable_cors: true
+  cors:
+    credentials: true
+    origins: "app://obsidian.md,capacitor://localhost,http://localhost"
+
+persistentVolume:
+  enabled: true
+  size: 5Gi
