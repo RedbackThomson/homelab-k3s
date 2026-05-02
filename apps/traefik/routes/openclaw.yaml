@@ -15,8 +15,7 @@ spec:
     - name: openclaw-external
       namespace: traefik-system
       port: 18789
-  tls:
-    certResolver: le
+  tls: {}
 ---
 apiVersion: v1
 kind: Service

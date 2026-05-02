@@ -13,5 +13,4 @@ spec:
         - name: couchdb-couchdb
           namespace: obsidian
           port: 5984
-  tls:
-    certResolver: le
+  tls: {}
