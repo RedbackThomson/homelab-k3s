@@ -5,6 +5,11 @@ DNS2:
   1.1.1.1
 persistentVolumeClaim:
   enabled: true
+  size: 2Gi
+ftl:
+  # Without a retention limit FTL keeps 365 days of queries and fills the volume,
+  # which then blocks the nightly gravity rebuild.
+  MAXDBDAYS: 14
 ingress:
   enabled: false
 serviceWeb:

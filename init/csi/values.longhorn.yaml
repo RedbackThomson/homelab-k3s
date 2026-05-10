@@ -1,0 +1,7 @@
+---
+# Single-node cluster: the default of 3 replicas leaves every volume permanently
+# degraded, which blocks volume expansion.
+defaultSettings:
+  defaultReplicaCount: 1
+persistence:
+  defaultClassReplicaCount: 1
