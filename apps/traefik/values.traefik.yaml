@@ -5,8 +5,9 @@ providers:
       enabled: true
   kubernetesCRD:
     enabled: true
+    # hass routes to an ExternalName service on the LAN, in this namespace.
     allowExternalNameServices: true
-    allowCrossNamespace: true
+    allowCrossNamespace: false
   kubernetesGateway:
     enabled: false
 
