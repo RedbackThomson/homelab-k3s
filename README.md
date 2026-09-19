@@ -16,6 +16,7 @@ also published to the internet.
 | openclaw | https://homelab-0-ollama.tailb0b05.ts.net |
 | Pi-hole | https://pihole.tailb0b05.ts.net/admin |
 | Obsidian LiveSync | https://obsidian.tailb0b05.ts.net |
+| Longhorn | https://longhorn.tailb0b05.ts.net |
 | Traefik dashboard | https://traefik.tailb0b05.ts.net |
 | Kubernetes API | https://homelab-k3s.tailb0b05.ts.net |
 

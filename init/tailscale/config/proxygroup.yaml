@@ -5,6 +5,6 @@ metadata:
   namespace: tailscale
 spec:
   type: ingress
-  # Single node: more replicas add tailnet devices and certificate issuance
-  # without adding a failure domain.
-  replicas: 1
+  # One replica per node, so a node restart does not take every tailnet
+  # service down with it.
+  replicas: 2
