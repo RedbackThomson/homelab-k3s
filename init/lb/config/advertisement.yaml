@@ -6,3 +6,8 @@ metadata:
 spec:
   ipAddressPools:
   - primary-pool
+  # Tailscale proxy pods add interfaces to the node, so an unrestricted
+  # advertisement could answer ARP for pool addresses off the LAN. This matches
+  # the kernel link name; the enp0s18 altname is not matched here.
+  interfaces:
+  - ens18

@@ -1,0 +1,10 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyGroup
+metadata:
+  name: ingress-proxies
+  namespace: tailscale
+spec:
+  type: ingress
+  # Single node: more replicas add tailnet devices and certificate issuance
+  # without adding a failure domain.
+  replicas: 1

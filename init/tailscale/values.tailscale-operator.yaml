@@ -1,0 +1,9 @@
+---
+# No oauth block: leaving clientId empty makes the chart mount the
+# out-of-band operator-oauth secret instead of templating credentials in.
+apiServerProxyConfig:
+  mode: "true"
+
+# Names the device that fronts the API server, so kubeconfig points at it.
+operatorConfig:
+  hostname: homelab-k3s
