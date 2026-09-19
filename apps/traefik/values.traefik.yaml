@@ -15,40 +15,41 @@ gateway:
 
 api:
   dashboard: true
-  insecure: false
+  # Serves the dashboard on the traefik entrypoint, which is only reachable
+  # through the tailnet ingress below and never from the LoadBalancer.
+  insecure: true
 
 ingressRoute:
   dashboard:
-    enabled: true
-    matchRule: Host(`traefik-dashboard.homelab.redback.dev`)
-    annotations:
-      external-dns.alpha.kubernetes.io/target: traefik.homelab.redback.dev
-    entryPoints:
-      - websecure
-    middlewares:
-      - name: oauth2-errors
-      - name: oauth2-auth
-    # certResolver here because the reserved name "default" can't be used in tls.options
-    tls:
-      certResolver: le
+    enabled: false
 
 ingressClass:
   enabled: true
   isDefaultClass: true
 
+service:
+  # Keeps the dashboard port off the LoadBalancer, which the WAN forwards to.
+  additionalServices:
+    dashboard:
+      type: ClusterIP
+
 ports:
+  traefik:
+    expose:
+      dashboard: true
   web:
     port: 80
   websecure:
     port: 443
-    # Wildcard for *.homelab.redback.dev; inherited by routes with empty tls: {}
-    tls:
-      enabled: true
-      certResolver: le
-      domains:
-        - main: homelab.redback.dev
-          sans:
-            - "*.homelab.redback.dev"
+    http:
+      # Wildcard for *.homelab.redback.dev; inherited by routes with empty tls: {}
+      tls:
+        enabled: true
+        certResolver: le
+        domains:
+          - main: homelab.redback.dev
+            sans:
+              - "*.homelab.redback.dev"
 
 # Persist acme.json across pod restarts to avoid LE rate limits
 persistence:
