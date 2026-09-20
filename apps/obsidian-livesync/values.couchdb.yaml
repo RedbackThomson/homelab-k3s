@@ -33,3 +33,19 @@ couchdbConfig:
 persistentVolume:
   enabled: true
   size: 5Gi
+
+# Both pods on one node means a node restart takes the whole cluster with it.
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: app
+              operator: In
+              values:
+                - couchdb
+            - key: release
+              operator: In
+              values:
+                - couchdb
+        topologyKey: kubernetes.io/hostname
