@@ -29,6 +29,9 @@ ingressClass:
   isDefaultClass: true
 
 service:
+  # Pinned so the WAN forward has a target that survives pool changes.
+  spec:
+    loadBalancerIP: 192.168.3.222
   # Keeps the dashboard port off the LoadBalancer, which the WAN forwards to.
   additionalServices:
     dashboard:

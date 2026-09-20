@@ -22,7 +22,7 @@ metadata:
   namespace: traefik-system
 spec:
   type: ExternalName
-  externalName: 192.168.1.152 # hass.homelab.local
+  externalName: 192.168.3.152 # hass.homelab.local
   ports:
     - name: web
       port: 8123
