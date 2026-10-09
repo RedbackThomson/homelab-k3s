@@ -1,0 +1,56 @@
+# The token secret is created by hand (see README) so it never lands in git.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pve-exporter
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pve-exporter
+  template:
+    metadata:
+      labels:
+        app: pve-exporter
+    spec:
+      containers:
+        - name: pve-exporter
+          image: prompve/prometheus-pve-exporter:3.10.1
+          ports:
+            - name: http
+              containerPort: 9221
+          env:
+            - name: PVE_USER
+              value: dashboard@pve
+            - name: PVE_TOKEN_NAME
+              value: api
+            - name: PVE_TOKEN_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: pve-exporter
+                  key: token-value
+            # Proxmox's generated CA has no keyUsage extension, which the
+            # exporter's Python (3.13+) rejects under strict X.509 checking.
+            # The connection stays on the homelab LAN.
+            - name: PVE_VERIFY_SSL
+              value: "false"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 48Mi
+            limits:
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pve-exporter
+  namespace: monitoring
+spec:
+  selector:
+    app: pve-exporter
+  ports:
+    - name: http
+      port: 9221
+      targetPort: http

@@ -1,0 +1,119 @@
+server:
+  fullnameOverride: victoria-metrics
+  retentionPeriod: 14d
+
+  extraArgs:
+    # Pick up scrape config changes without restarting the pod.
+    promscrape.configCheckInterval: 30s
+
+  persistentVolume:
+    enabled: true
+    # Both local-path and longhorn are marked default, so an unset class is ambiguous.
+    storageClassName: longhorn
+    size: 10Gi
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+
+  service:
+    # The Tailscale ingress needs a ClusterIP to proxy to.
+    clusterIP: ""
+
+  scrape:
+    enabled: true
+    config:
+      global:
+        scrape_interval: 30s
+
+      scrape_configs:
+        - job_name: victoriametrics
+          static_configs:
+            - targets: ["localhost:8428"]
+
+        - job_name: node
+          static_configs:
+            - targets: ["192.168.3.151:9100"]
+              labels: {host: homelab-0-k3s-0, proxmox_node: homelab-0}
+            - targets: ["192.168.3.155:9100"]
+              labels: {host: homelab-0-k3s-1, proxmox_node: homelab-0}
+            - targets: ["192.168.3.152:9100"]
+              labels: {host: homelab-0-home-assistant, proxmox_node: homelab-0}
+            - targets: ["192.168.3.153:9100"]
+              labels: {host: homelab-0-ollama, proxmox_node: homelab-0}
+            - targets: ["192.168.3.154:9100"]
+              labels: {host: homelab-0-devbox, proxmox_node: homelab-0}
+
+        - job_name: blackbox
+          metrics_path: /probe
+          static_configs:
+            - targets:
+                - https://hass.homelab.redback.dev
+                - https://homelab-0-home-assistant.tailb0b05.ts.net
+                - https://pihole.tailb0b05.ts.net/admin/
+                - https://longhorn.tailb0b05.ts.net
+                - https://traefik.tailb0b05.ts.net
+                - https://metrics.tailb0b05.ts.net
+              labels: {module: http_2xx}
+            - targets:
+                - https://homelab-k3s.tailb0b05.ts.net/readyz
+                # CouchDB answers 401 without credentials.
+                - https://obsidian.tailb0b05.ts.net
+              labels: {module: http_reachable}
+          relabel_configs:
+            - source_labels: [module]
+              target_label: __param_module
+            - source_labels: [__address__]
+              target_label: __param_target
+            - source_labels: [__param_target]
+              target_label: instance
+            - target_label: __address__
+              replacement: 192.168.3.154:9115
+
+        - job_name: etcd
+          static_configs:
+            - targets: ["192.168.3.151:2381"]
+              labels: {host: homelab-0-k3s-0}
+
+        - job_name: longhorn
+          static_configs:
+            - targets: ["longhorn-backend.longhorn-system:9500"]
+
+        - job_name: kube-state-metrics
+          # Keep the object's own namespace label instead of the scrape target's.
+          honor_labels: true
+          static_configs:
+            - targets: ["kube-state-metrics.monitoring:8080"]
+
+        - job_name: pve
+          metrics_path: /pve
+          params:
+            cluster: ["1"]
+            node: ["1"]
+          static_configs:
+            - targets: ["192.168.3.10"]
+              labels: {proxmox_node: homelab-0}
+          relabel_configs:
+            - source_labels: [__address__]
+              target_label: __param_target
+            - source_labels: [__param_target]
+              target_label: instance
+            - target_label: __address__
+              replacement: pve-exporter.monitoring:9221
+
+        - job_name: metallb
+          kubernetes_sd_configs:
+            - role: pod
+              namespaces:
+                names: [metallb-system]
+          relabel_configs:
+            - source_labels: [__meta_kubernetes_pod_container_port_name]
+              action: keep
+              regex: monitoring
+            - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_component]
+              target_label: component
+            - source_labels: [__meta_kubernetes_pod_node_name]
+              target_label: node

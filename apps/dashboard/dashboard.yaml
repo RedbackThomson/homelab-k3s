@@ -1,0 +1,142 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dashboard
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dashboard
+  namespace: dashboard
+---
+# Read-only: the dashboard lists objects and reads the last log line of crashing pods.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dashboard
+rules:
+  - apiGroups: [""]
+    resources: [pods, pods/log, events, nodes]
+    verbs: [get, list]
+  - apiGroups: [apps]
+    resources: [deployments, statefulsets, daemonsets]
+    verbs: [list]
+  - apiGroups: [metrics.k8s.io]
+    resources: [nodes]
+    verbs: [list]
+  - apiGroups: [k3s.cattle.io]
+    resources: [etcdsnapshotfiles]
+    verbs: [list]
+  - apiGroups: [tailscale.com]
+    resources: [proxygroups]
+    verbs: [list]
+  - apiGroups: [longhorn.io]
+    resources: [volumes, replicas]
+    verbs: [list]
+  - nonResourceURLs: [/readyz]
+    verbs: [get]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: dashboard
+subjects:
+  - kind: ServiceAccount
+    name: dashboard
+    namespace: dashboard
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dashboard-data
+  namespace: dashboard
+spec:
+  accessModes: [ReadWriteOnce]
+  # Both local-path and longhorn are marked default, so an unset class is ambiguous.
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  namespace: dashboard
+spec:
+  replicas: 1
+  # The data volume is ReadWriteOnce, so the old pod must stop before the new one starts.
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: dashboard
+  template:
+    metadata:
+      labels:
+        app: dashboard
+    spec:
+      serviceAccountName: dashboard
+      securityContext:
+        fsGroup: 65534
+      containers:
+        - name: dashboard
+          image: ghcr.io/redbackthomson/homelab-dashboard:d7a02e4
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: INVENTORY
+              value: /etc/dashboard/inventory.json
+            - name: DATA_DIR
+              value: /data
+          # Optional credentials (see README); the dashboard degrades without them.
+          envFrom:
+            - secretRef:
+                name: dashboard
+                optional: true
+          readinessProbe:
+            httpGet:
+              path: /api/snapshot
+              port: http
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          resources:
+            requests:
+              cpu: 20m
+              memory: 64Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: inventory
+              mountPath: /etc/dashboard
+              readOnly: true
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: inventory
+          configMap:
+            name: dashboard-inventory
+        - name: data
+          persistentVolumeClaim:
+            claimName: dashboard-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  namespace: dashboard
+spec:
+  selector:
+    app: dashboard
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

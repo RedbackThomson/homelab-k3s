@@ -1,0 +1,71 @@
+{
+  "groups": [
+    {
+      "name": "homelab-0",
+      "kind": "Proxmox node",
+      "proxmoxNode": "homelab-0",
+      "hosts": [
+        {
+          "name": "homelab-0-k3s-0",
+          "role": "K3s server · etcd",
+          "addr": "192.168.3.151",
+          "vm": "k3s-0"
+        },
+        {
+          "name": "homelab-0-k3s-1",
+          "role": "K3s agent",
+          "addr": "192.168.3.155",
+          "vm": "k3s-1"
+        },
+        {
+          "name": "homelab-0-home-assistant",
+          "role": "Home Assistant",
+          "addr": "192.168.3.152",
+          "vm": "home-assistant"
+        },
+        {
+          "name": "homelab-0-ollama",
+          "role": "LLM server",
+          "addr": "192.168.3.153",
+          "vm": "ollama"
+        },
+        {
+          "name": "homelab-0-devbox",
+          "role": "Dev VM",
+          "addr": "192.168.3.154",
+          "vm": "devbox"
+        }
+      ]
+    },
+    {
+      "name": "Personal devices",
+      "kind": "nix-darwin · tailnet",
+      "hosts": [
+        {
+          "name": "nicholasworkmbp",
+          "role": "MacBook",
+          "addr": "tailnet",
+          "darwin": true,
+          "tailnetName": "nick-work-mbp"
+        },
+        {
+          "name": "personal-macbook",
+          "role": "MacBook",
+          "addr": "tailnet",
+          "darwin": true,
+          "tailnetName": "nick-personal-mbp"
+        }
+      ]
+    }
+  ],
+  "endpoints": {
+    "https://hass.homelab.redback.dev": "Home Assistant (public)",
+    "https://homelab-0-home-assistant.tailb0b05.ts.net": "Home Assistant",
+    "https://pihole.tailb0b05.ts.net/admin/": "Pi-hole",
+    "https://obsidian.tailb0b05.ts.net": "Obsidian LiveSync",
+    "https://longhorn.tailb0b05.ts.net": "Longhorn",
+    "https://traefik.tailb0b05.ts.net": "Traefik dashboard",
+    "https://metrics.tailb0b05.ts.net": "VictoriaMetrics",
+    "https://homelab-k3s.tailb0b05.ts.net/readyz": "Kubernetes API"
+  }
+}
