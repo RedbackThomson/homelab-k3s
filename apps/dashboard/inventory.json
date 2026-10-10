@@ -4,6 +4,7 @@
       "name": "homelab-0",
       "kind": "Proxmox node",
       "proxmoxNode": "homelab-0",
+      "proxmoxUrl": "https://192.168.3.10:8006",
       "hosts": [
         {
           "name": "homelab-0-k3s-0",
@@ -66,5 +67,6 @@
     "https://traefik.tailb0b05.ts.net": "Traefik dashboard",
     "https://metrics.tailb0b05.ts.net": "VictoriaMetrics",
     "https://homelab-k3s.tailb0b05.ts.net/readyz": "Kubernetes API"
-  }
+  },
+  "longhornUrl": "https://longhorn.tailb0b05.ts.net"
 }
