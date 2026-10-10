@@ -59,7 +59,6 @@
     }
   ],
   "endpoints": {
-    "https://hass.homelab.redback.dev": "Home Assistant (public)",
     "https://homelab-0-home-assistant.tailb0b05.ts.net": "Home Assistant",
     "https://pihole.tailb0b05.ts.net/admin/": "Pi-hole",
     "https://obsidian.tailb0b05.ts.net": "Obsidian LiveSync",

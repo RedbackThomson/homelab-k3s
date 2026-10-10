@@ -51,7 +51,6 @@ server:
           metrics_path: /probe
           static_configs:
             - targets:
-                - https://hass.homelab.redback.dev
                 - https://homelab-0-home-assistant.tailb0b05.ts.net
                 - https://pihole.tailb0b05.ts.net/admin/
                 - https://longhorn.tailb0b05.ts.net
