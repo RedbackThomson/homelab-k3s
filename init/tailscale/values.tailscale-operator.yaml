@@ -1,9 +1,12 @@
 ---
 # No oauth block: leaving clientId empty makes the chart mount the
 # out-of-band operator-oauth secret instead of templating credentials in.
+# The API server proxy runs as the apiserver-proxies ProxyGroup, because the
+# operator is a single replica and an in-process proxy would die with it.
 apiServerProxyConfig:
-  mode: "true"
+  mode: "false"
+  allowImpersonation: "true"
 
-# Names the device that fronts the API server, so kubeconfig points at it.
+# Frees the homelab-k3s name for the API server ProxyGroup.
 operatorConfig:
-  hostname: homelab-k3s
+  hostname: homelab-k3s-operator

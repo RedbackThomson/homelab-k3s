@@ -1,0 +1,29 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: apiserver-proxies
+spec:
+  statefulSet:
+    pod:
+      labels:
+        app: apiserver-proxies
+      # Both replicas on one node means a node restart cuts off kubectl access.
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: apiserver-proxies
+              topologyKey: kubernetes.io/hostname
+---
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyGroup
+metadata:
+  name: apiserver-proxies
+spec:
+  type: kube-apiserver
+  replicas: 2
+  proxyClass: apiserver-proxies
+  kubeAPIServer:
+    mode: auth
+    hostname: homelab-k3s
